@@ -12,7 +12,7 @@ public class BankAccountParameterizedTest {
     private BankAccount bankAccount;
 
     @BeforeEach
-    public void setUp() {
+    public void setup() {
         this.bankAccount = new BankAccount("Jefté", "Goes", 1000, BankAccount.CHECKING);
         System.out.println("Running a test...");
     }
@@ -29,7 +29,16 @@ public class BankAccountParameterizedTest {
 
     @ParameterizedTest
     @MethodSource("testConditions")
-    public void deposit(double amount, boolean branch, double expected) {
+    public void shouldDepositCorrectAmountFromMethodSource(double amount, boolean branch, double expected) {
+        bankAccount.deposit(amount, branch);
+        Assertions.assertEquals(expected, bankAccount.getBalance(), 0.01);
+    }
+
+    // The name of method is the same as the method source.
+    // It is not necessary to pass the name of the method as a parameter to the @MethodSource annotation.
+    @ParameterizedTest
+    @MethodSource()
+    public void testConditions(double amount, boolean branch, double expected) {
         bankAccount.deposit(amount, branch);
         Assertions.assertEquals(expected, bankAccount.getBalance(), 0.01);
     }

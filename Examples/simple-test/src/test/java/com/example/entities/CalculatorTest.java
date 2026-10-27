@@ -2,12 +2,14 @@ package com.example.entities;
 
 import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @DisplayName("Test Math operations in Calculator class")
 public class CalculatorTest {
     private Calculator calculator;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setup() {
         System.out.println("Executing @BeforeAll method.");
     }
 
@@ -35,7 +37,7 @@ public class CalculatorTest {
         float result = calculator.sumTwoValues(valueA, valueB);
 
         // Assert
-        Assertions.assertEquals(expected, result, "The sum of " + valueA + " and " + valueB + " did not produce " + expected + ".");
+        assertEquals(expected, result, "The sum of " + valueA + " and " + valueB + " did not produce " + expected + ".");
     }
 
     @DisplayName("Test 4 / 2 = 2")
@@ -51,7 +53,7 @@ public class CalculatorTest {
         float result = calculator.divideTwoValues(valueA, valueB);
 
         // Assert
-        Assertions.assertEquals(expected, result, "The division of " + valueA + " and " + valueB + " did not produce " + expected + ".");
+        assertEquals(expected, result, "The division of " + valueA + " and " + valueB + " did not produce " + expected + ".");
     }
 
     @DisplayName("Division by zero")
@@ -63,14 +65,30 @@ public class CalculatorTest {
         int valueB = 0;
 
         // Act and Assert
-        Assertions.assertThrows(ArithmeticException.class, () -> calculator.divideTwoValues(valueA, valueB));
+        assertThrows(ArithmeticException.class, () -> calculator.divideTwoValues(valueA, valueB));
+    }
+
+    @DisplayName("Division by zero by Message")
+    @Test
+    public void calculatorMustThrowExceptionDivideByZeroByMessage() {
+        System.out.println("Test 4 / 0 = ERROR");
+        // Arrange
+        int valueA = 4;
+        int valueB = 0;
+        String expectedExceptionMessage = "/ by zero";
+
+        // Act
+        ArithmeticException arithmeticException = assertThrows(ArithmeticException.class, () -> calculator.divideTwoValues(valueA, valueB), "Division by zero should throw an ArithmeticException.");
+
+        // Assert
+        assertEquals(expectedExceptionMessage, arithmeticException.getMessage(), "The exception message does not match the expected message.");
     }
 
     @Disabled("TODO: Still need to work on it.")
     @DisplayName("Division by zero")
     @Test
     public void testNotImplemented() {
-        Assertions.fail("Not implemented yet.");
+        fail("Not implemented yet.");
     }
 
     @DisplayName("Test 22 + 33 != 50")
@@ -80,11 +98,27 @@ public class CalculatorTest {
         // Arrange
         Calculator calculator = new Calculator();
 
-        // Act
+        // Act & Assert
         float result = calculator.sumTwoValues(22f, 33f);
 
         // Assert
-        Assertions.assertNotEquals(50f, result);
+        assertNotEquals(50f, result);
+    }
+
+    @DisplayName("Square root of negative number")
+    @Test
+    void testSquareRoot_WhenNumberIsNegative_ShouldThrowIllegalArgumentException() {
+        // Arrange
+        double number = -9;
+        String expectedMessage = "Cannot calculate square root of negative number";
+
+        // Act & Assert
+        IllegalArgumentException actualException = assertThrows(IllegalArgumentException.class, () -> {
+            calculator.squareRoot(number);
+        }, "Square root of negative number should throw IllegalArgumentException");
+
+        // Assert
+        assertEquals(expectedMessage, actualException.getMessage(), "Unexpected exception message");
     }
 
     @AfterAll

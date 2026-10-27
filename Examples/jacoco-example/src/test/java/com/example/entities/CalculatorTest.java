@@ -8,7 +8,7 @@ public class CalculatorTest {
     private static Calculator calculator;
 
     @BeforeAll
-    static void setUp() {
+    static void setup() {
         calculator = new Calculator();
     }
 

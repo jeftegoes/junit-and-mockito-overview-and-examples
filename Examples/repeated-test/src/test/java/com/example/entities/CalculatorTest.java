@@ -6,7 +6,7 @@ public class CalculatorTest {
     private Calculator calculator;
 
     @BeforeEach
-    public void setUp() {
+    public void setup() {
         calculator = new Calculator();
     }
 

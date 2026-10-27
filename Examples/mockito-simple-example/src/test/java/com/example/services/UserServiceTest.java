@@ -28,7 +28,7 @@ public class UserServiceTest {
     private String repeatPassword;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         userService = new UserServiceImpl(userRepository);
         firstName = "Jefté";
         lastName = "Goes";

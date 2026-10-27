@@ -20,7 +20,7 @@ public class ClassATest {
     ClassB classB;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
 
     }
 

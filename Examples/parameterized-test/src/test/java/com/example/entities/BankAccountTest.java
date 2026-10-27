@@ -12,7 +12,7 @@ public class BankAccountTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    public void setup() {
         this.bankAccount = new BankAccount("Jefté", "Goes", 1000, BankAccount.CHECKING);
         System.out.println("Running a test...");
     }

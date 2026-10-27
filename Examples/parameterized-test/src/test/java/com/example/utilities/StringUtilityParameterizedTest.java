@@ -13,7 +13,7 @@ public class StringUtilityParameterizedTest {
     private StringUtility stringUtility;
 
     @BeforeEach
-    public void setUp() {
+    public void setup() {
         this.stringUtility = new StringUtility();
     }
 

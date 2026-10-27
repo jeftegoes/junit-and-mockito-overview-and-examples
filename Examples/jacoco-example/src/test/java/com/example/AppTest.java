@@ -10,7 +10,7 @@ public class AppTest {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @BeforeEach
-    public void setUp() {
+    public void setup() {
         System.setOut(new PrintStream(outputStreamCaptor));
 
         App app = new App();

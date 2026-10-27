@@ -21,7 +21,7 @@ public class ProductApplicationTest {
     ProductService productService;
 
     @BeforeEach
-    public void setUp() {
+    public void setup() {
 
     }
 

@@ -19,7 +19,7 @@ public class GameTest {
     Player player;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
 
     }
 
