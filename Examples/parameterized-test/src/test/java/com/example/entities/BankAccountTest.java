@@ -2,6 +2,8 @@ package com.example.entities;
 
 import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class BankAccountTest {
     private BankAccount bankAccount;
     private static int count;
@@ -20,18 +22,18 @@ public class BankAccountTest {
     @Test
     public void deposit() {
         double balance = bankAccount.deposit(200, true);
-        Assertions.assertEquals(1200, balance, 0);
+        assertEquals(1200, balance, 0);
     }
 
     @Test
     public void withdraw() {
         double balance = bankAccount.withdraw(600.00, true);
-        Assertions.assertEquals(400.00, balance, 0);
+        assertEquals(400.00, balance, 0);
     }
 
     @Test
     public void withdraw_notBranch() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             double balance = bankAccount.withdraw(600.00, false);
         });
     }
@@ -39,18 +41,18 @@ public class BankAccountTest {
     @Test
     public void getBalance_deposit() {
         bankAccount.deposit(200, true);
-        Assertions.assertEquals(1200, bankAccount.getBalance(), 0);
+        assertEquals(1200, bankAccount.getBalance(), 0);
     }
 
     @Test
     public void getBalance_withdraw() {
         bankAccount.withdraw(200, true);
-        Assertions.assertEquals(800, bankAccount.getBalance(), 0);
+        assertEquals(800, bankAccount.getBalance(), 0);
     }
 
     @Test
     public void isChecking_true() {
-        Assertions.assertTrue(bankAccount.isChecking(), "The account is NOT a checking account!");
+        assertTrue(bankAccount.isChecking(), "The account is NOT a checking account!");
     }
 
     @AfterAll

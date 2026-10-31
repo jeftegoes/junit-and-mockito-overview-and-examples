@@ -1,12 +1,13 @@
 package com.example.entities;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankAccountParameterizedTest {
     private BankAccount bankAccount;
@@ -31,7 +32,7 @@ public class BankAccountParameterizedTest {
     @MethodSource("testConditions")
     public void shouldDepositCorrectAmountFromMethodSource(double amount, boolean branch, double expected) {
         bankAccount.deposit(amount, branch);
-        Assertions.assertEquals(expected, bankAccount.getBalance(), 0.01);
+        assertEquals(expected, bankAccount.getBalance(), 0.01);
     }
 
     // The name of method is the same as the method source.
@@ -40,6 +41,6 @@ public class BankAccountParameterizedTest {
     @MethodSource()
     public void testConditions(double amount, boolean branch, double expected) {
         bankAccount.deposit(amount, branch);
-        Assertions.assertEquals(expected, bankAccount.getBalance(), 0.01);
+        assertEquals(expected, bankAccount.getBalance(), 0.01);
     }
 }

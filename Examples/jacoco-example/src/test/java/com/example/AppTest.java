@@ -1,9 +1,10 @@
 package com.example;
 
-import com.example.entities.Calculator;
 import org.junit.jupiter.api.*;
 
 import java.io.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AppTest {
     private final PrintStream standardOut = System.out;
@@ -23,7 +24,7 @@ public class AppTest {
 
         App.main(new String[]{});
 
-        Assertions.assertEquals("Inform first Operand: Inform second Operand: Now the mathematical mathematicalOperator: Calculator resul: 30.0", outputStreamCaptor.toString().trim());
+        assertEquals("Inform first Operand: Inform second Operand: Now the mathematical mathematicalOperator: Calculator resul: 30.0", outputStreamCaptor.toString().trim());
     }
 
     @AfterEach

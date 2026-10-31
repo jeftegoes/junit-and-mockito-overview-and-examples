@@ -28,6 +28,6 @@ public class ClassATest {
     void sumTwoValuesTest() {
         Mockito.when(classB.getX()).thenReturn(20);
 
-        Assertions.assertEquals(25, classA.sumValues());
+        assertEquals(25, classA.sumValues());
     }
 }

@@ -2,6 +2,9 @@ package com.example.entities;
 
 import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 public class CalculatorTest {
     private Calculator calculator;
 
@@ -19,18 +22,21 @@ public class CalculatorTest {
 
         int result = calculator.multiply(valueA, valueB);
 
-        Assertions.assertEquals(expected, result, "The multiplication of " + valueA + " and " + valueB + " shouldn't be different from " + expected);
+        assertEquals(expected, result, "The multiplication of " + valueA + " and " + valueB + " shouldn't be different from " + expected);
     }
 
     @DisplayName("Test 2 * 2 != 4")
     @RepeatedTest(value = 3, name = "{displayName}. Repetition {currentRepetition} of {totalRepetitions}")
     public void shouldNotMultiplyCorrectly(RepetitionInfo repetitionInfo, TestInfo testInfo) {
+        System.out.println("Running " + testInfo.getTestMethod().get().getName());
+        System.out.println("Repetition #" + repetitionInfo.getCurrentRepetition() + " of " + repetitionInfo.getTotalRepetitions());
+
         int valueA = 2;
         int valueB = 2;
         int expected = 5;
 
         int result = calculator.multiply(valueA, valueB);
 
-        Assertions.assertNotEquals(expected, result, "The multiplication of " + valueA + " and " + valueB + " shouldn't be different from " + expected);
+        assertNotEquals(expected, result, "The multiplication of " + valueA + " and " + valueB + " shouldn't be different from " + expected);
     }
 }

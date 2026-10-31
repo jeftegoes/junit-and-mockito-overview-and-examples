@@ -27,6 +27,6 @@ public class GameTest {
     void gameWeaponAttackTest() {
         Mockito.when(player.getWeapon()).thenReturn("Sword");
 
-        Assertions.assertEquals("Player attack with: Sword", game.attack());
+        assertEquals("Player attack with: Sword", game.attack());
     }
 }

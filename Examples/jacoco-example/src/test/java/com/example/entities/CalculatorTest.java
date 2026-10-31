@@ -1,8 +1,10 @@
 package com.example.entities;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
     private static Calculator calculator;
@@ -15,34 +17,34 @@ public class CalculatorTest {
     @Test
     void addSimple() {
         double result = calculator.calculate(1, 1, '+');
-        Assertions.assertEquals(2, result);
+        assertEquals(2, result);
     }
 
     @Test
     void multiplySimple() {
         double result = calculator.calculate(1, 1, '*');
-        Assertions.assertEquals(1, result);
+        assertEquals(1, result);
     }
 
     @Test
     void subtractSimple() {
         double result = calculator.calculate(1, 1, '-');
-        Assertions.assertEquals(0, result);
+        assertEquals(0, result);
     }
 
     @Test
     void divideSimple() {
         double result = calculator.calculate(1, 1, ':');
-        Assertions.assertEquals(1, result);
+        assertEquals(1, result);
     }
 
     @Test
     void illegalArgument() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> calculator.calculate(1, 1, '/'));
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculate(1, 1, '/'));
     }
 
     @Test
     void divideByZero() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> calculator.calculate(1, 0, ':'));
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculate(1, 0, ':'));
     }
 }
